@@ -43,17 +43,6 @@ function setupRobot(name_suffix)
     robot_end_effector_collector = sim.getObjectPosition(sim.getObjectHandle("SRMG_graspCollector"..name_suffix), -1)
 end
 
-function euler_to_quaternion(r)
-    local yaw = r[3]
-    local pitch = r[1]
-    local roll = r[2]
-    local qx = math.sin(roll/2) * math.cos(pitch/2) * math.cos(yaw/2) - math.cos(roll/2) * math.sin(pitch/2) * math.sin(yaw/2)
-    local qy = math.cos(roll/2) * math.sin(pitch/2) * math.cos(yaw/2) + math.sin(roll/2) * math.cos(pitch/2) * math.sin(yaw/2)
-    local qz = math.cos(roll/2) * math.cos(pitch/2) * math.sin(yaw/2) - math.sin(roll/2) * math.sin(pitch/2) * math.cos(yaw/2)
-    local qw = math.cos(roll/2) * math.cos(pitch/2) * math.cos(yaw/2) + math.sin(roll/2) * math.sin(pitch/2) * math.sin(yaw/2)
-    return {qx,qy,qz,qw}
-end
-
 function selectRobotEndEffector(index)
     local toolDefined = false
     local prevPos = -1
